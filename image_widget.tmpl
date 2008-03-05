@@ -1,0 +1,7 @@
+<div class="simplepie">
+	{IF_ERROR_BEGIN}<p class="error">{ERROR_MESSAGE}</p>{IF_ERROR_END}
+
+		{ITEM_LOOP_BEGIN}
+		    <div class="rss_image"><a href="{ITEM_PERMALINK}"><img src="{ITEM_ENCLOSURE_LINK}" alt="{ITEM_TITLE}" width="150"></a></div><br />
+		{ITEM_LOOP_END}
+</div>
