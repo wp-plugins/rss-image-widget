@@ -1,6 +1,6 @@
 === RSS Image Widget ===
 Contributors: zackdesign
-http://www.zackdesign.biz/wp-plugins/34
+http://www.zackdesign.biz/wp-plugins/40
 Tags: rss, image, feed, widget, simplepie, plugin
 Requires at least: 2.3
 Tested up to: 2.3
@@ -12,9 +12,9 @@ This plugin provides you with a widget to display images from a feed. It require
 
 Image Feeds will work in the plugin providing that they use enclosures. If you want you can change the template provided to suit your feed if necessary, though this should work if enclosures are used correctly.
 
-I have set the default image width in the template to be 150 pixels wide. You can change or remove this in the template as you like. The template file is the one with the .tmpl extension. To find out what tags you can use in the template visit this site: http://simplepie.org/wiki/plugins/wordpress/simplepie_plugin_for_wordpress#template_tags
+I have set the default image width in the template to be 150 pixels wide. You can change or remove this in the template as you like. The template file is the one with the .tmpl extension. To find out what tags you can use in the template [visit this site](http://simplepie.org/wiki/plugins/wordpress/simplepie_plugin_for_wordpress#template_tags "Template Tags").
 
-SimplePie is required as a plugin for this widget/plugin to work: http://wordpress.org/extend/plugins/simplepie-plugin-for-wordpress/
+[SimplePie](http://wordpress.org/extend/plugins/simplepie-plugin-for-wordpress/ "Simplepie") is required as a plugin for this widget/plugin to work.
 
 Simplepie provides its own options area in admin. I suggest you get familiar with it.
 
