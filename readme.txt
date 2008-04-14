@@ -3,12 +3,14 @@ Contributors: zackdesign
 http://www.zackdesign.biz/wp-plugins/40
 Tags: rss, image, feed, widget, simplepie, plugin
 Requires at least: 2.3
-Tested up to: 2.3
-Stable tag: 1.0
+Tested up to: 2.5
+Stable tag: 1.1
 
 This plugin provides you with a widget to display images from a feed. It requires the SimplePie plugin to be installed.
 
 == Description ==
+
+This Widget uses PHPThumb to automatically generate good-looking thumbnails from RSS feed images inside your template. 
 
 Image Feeds will work in the plugin providing that they use enclosures. If you want you can change the template provided to suit your feed if necessary, though this should work if enclosures are used correctly.
 

@@ -4,7 +4,7 @@ Plugin Name: RSS Images
 Plugin URI: http://www.zackdesign.biz/wp-plugins/40
 Description: RSS Image display using SimplePie
 Author: Isaac Rowntree
-Version: 1.0
+Version: 1.1
 Author URI: http://zackdesign.biz
 
 	Copyright (c) 2005, 2006 Isaac Rowntree (http://zackdesign.biz)
@@ -13,6 +13,11 @@ Author URI: http://zackdesign.biz
 
 	This is a WordPress plugin (http://wordpress.org).
 
+Changelog:
+
+1.1 
+
+- Addition to admin of changeable title
 
 */
 
@@ -41,11 +46,12 @@ function widget_rss_images_init() {
   		$url = $options['url'];
   		
   		$items = $options['images'];
+                $title = $options['title'];
 
     		// These lines generate our output. Widgets can be very complex
     		// but as you can see here, they can also be very, very simple.
     		echo $before_widget . $before_title;    		
-        echo 'Images'.$after_title;
+        echo $title.$after_title;
     		
     		    if ($url && ($url != ''))
     		    {
@@ -66,22 +72,25 @@ function widget_rss_images_init() {
 		$options = get_option('widget_rss_images');
 		if ( !is_array($options) )
 		{
-			$options = array('url'=>'', 'images'=>'0');
+			$options = array('title' => 'Images', 'url'=>'http://api.flickr.com/services/feeds/photos_public.gne?id=85169502@N00&lang=en-us&format=rss_200', 'images'=>'0');
 		}
 		
 		if ( $_POST['rss_images-submit'] ) {
 			// Remember to sanitize and format use input appropriately.
 			$options['url'] = strip_tags(stripslashes($_POST['rss_images-url']));
-      $options['images'] = $_POST['rss_images-images'];
+                        $options['title'] = strip_tags(stripslashes($_POST['rss_images-title']));
+                        $options['images'] = $_POST['rss_images-images'];
 			update_option('widget_rss_images', $options);
 		}
 
 		// Be sure you format your options to be valid HTML attributes.
 		$url = htmlspecialchars($options['url'], ENT_QUOTES);
+                $title = htmlspecialchars($options['title'], ENT_QUOTES);
 		$images=$options['images'];
 		
 		// Here is our little form segment. Notice that we don't need a
 		// complete form. This will be embedded into the existing form.
+    echo '<p style="text-align:left;"><label for="rss_images-title">' . __('Title:') . ' <input style="width: 200px;" id="rss_images-title" name="rss_images-title" type="text" value="'.$title.'" /></label></p>';
 		echo '<p style="text-align:left;"><label for="rss_images-url">' . __('Feed:') . ' <input style="width: 200px;" id="rss_images-url" name="rss_images-url" type="text" value="'.$url.'" /></label></p>';
 		echo '<p style="text-align:left;"><label for="rss_images-images">' . __('# of Images:') . ' <input style="width: 30px;" id="rss_images-images" name="rss_images-images" type="text" value="'.$images.'" /></label></p>';
 		echo '<input type="hidden" id="rss_images-submit" name="rss_images-submit" value="1" />';
