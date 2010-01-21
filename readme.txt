@@ -2,9 +2,9 @@
 Contributors: zackdesign
 http://www.zackdesign.biz/wp-plugins/40
 Tags: rss, image, feed, widget, simplepie, plugin
-Requires at least: 2.3
-Tested up to: 2.5
-Stable tag: 1.1
+Requires at least: 2.8
+Tested up to: 2.9.1
+Stable tag: 1.2
 
 This plugin provides you with a widget to display images from a feed. It requires the SimplePie plugin to be installed.
 
@@ -29,17 +29,32 @@ Please be aware that I'll only be updating this if I need to. Feel free to come 
 ** You must have installed Simplepie Plugin for Wordpress before continuing. **
 
 1. Upload the 'rss-image-widget' folder to the `/wp-content/plugins/` directory
-2. IMPORTANT - Copy 'image_widget.tmpl' to the `/wp-content/plugins/simplepie-plugin-for-wordpress/templates/` directory. 
+2. IMPORTANT - Copy 'image_widget.tmpl' to the `/wp-content/plugins/simplepie-plugin-for-wordpress/templates/` directory. Check the URL inside the template file to make sure it's looking in the right place for PHPThumb or you'll get no images.
 3. Activate the plugin through the 'Plugins' menu in WordPress
 4. Go to the Presentation menu in Wordpress Admin and choose 'Widgets' in the submenu.
 5. Drag and drop the Rss Image widget onto your sidebar.
 6. Click on the widget in the form area and it should popup the form. Put your feed address in the correct spot, and optionally specify the number of images. If you don't, it will use the default Simplepie settings.
 
 
---------------------------------------------
+== Changelog ==
 
+1.2
+
+- Uses Wordpress 2.8 widget class which means it now supports multiple instances!
+
+1.1
+
+- Addition to admin of changeable title
+
+1.0
+
+- First release
 
 == Frequently Asked Questions ==
+
+= Purple PHPThumb screen =
+
+Usually this is because you have not made PHPThumb's cache directory readable.
 
 = I Need HELP!!! =
 
