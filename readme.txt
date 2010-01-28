@@ -24,6 +24,10 @@ This widget also requires that Sidebar Widgets are installed.
  
 Please be aware that I'll only be updating this if I need to. Feel free to come on board and contribute!
 
+== Screenshots ==
+
+[Zack Design Plugin Showcase](http://wordpress.zackdesign.biz "Plugin Showcase")
+
 == Installation ==
 
 ** You must have installed Simplepie Plugin for Wordpress before continuing. **
