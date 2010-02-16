@@ -1,6 +1,6 @@
 === RSS Image Widget ===
 Contributors: zackdesign
-http://www.zackdesign.biz/wp-plugins/40
+http://www.zackdesign.biz/category/wp-plugins/rss-image-widget
 Tags: rss, image, feed, widget, simplepie, plugin
 Requires at least: 2.8
 Tested up to: 2.9.2
@@ -26,6 +26,10 @@ Next version will include some extra options and possibly better HTML.
 * Much more
  
 Please be aware that I'll only be updating this if I need to. Feel free to come on board and contribute!
+
+== Upgrade Notice ==
+
+If you're upgrading and you made changes to the template I provided please note that the template is no longer in use. In that case maybe hold off upgrading if you're not confident editing the actual plugin file.
 
 == Screenshots ==
 
