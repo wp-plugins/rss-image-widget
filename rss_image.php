@@ -4,7 +4,7 @@ Plugin Name: RSS Images
 Plugin URI: http://www.zackdesign.biz/wp-plugins/40
 Description: RSS Image display using SimplePie
 Author: Isaac Rowntree
-Version: 1.2.1
+Version: 1.3
 Author URI: http://zackdesign.biz
 
 	Copyright (c) 2005, 2006 Isaac Rowntree (http://zackdesign.biz)
@@ -36,15 +36,57 @@ class RSSImages extends WP_Widget {
 	
 	if (!empty($instance['url']))
     	{
-            if ( function_exists('SimplePieWP'))
-	    {
-		if (!$instance['images'])
-                    echo SimplePieWP($instance['url'], array('template' => 'image_widget'));
-                else
-                    echo SimplePieWP($instance['url'], array('items' => $instance['images'], 'template' => 'image_widget'));
-    	    }
-            else
-	        echo 'You must have SimplePie plugin installed before this plugin will work.';
+                if (!class_exists('SimplePie'))
+		    require_once(ABSPATH.'/wp-includes/class-simplepie.php');
+		
+		$feed = new SimplePie();
+		$feed->set_feed_url($instance['url']);
+		$feed->set_cache_location( ABSPATH.'/wp-content/cache');
+		$feed->init();
+		
+		if ($instance['images'])
+		{
+		    echo '<div class="simplepie">';
+		    
+		    $count = 0;
+		    
+		    foreach ($feed->get_items() as $item)
+		    {
+			if ($count < $instance['images'])
+			{			    
+			    $count++;
+			    $url = '';
+			    
+			    if ($enclosure = $item->get_enclosure())
+	                    { 
+		                $url = $enclosure->get_link();
+				// For some reason question marks aren't happy
+				$image = str_replace("?", '', htmlspecialchars($item->get_title()).'.jpg');
+				
+				if (!file_exists(ABSPATH.'/wp-content/cache/'.$image))
+				{
+				    // PHPThumb caching
+				    require_once(ABSPATH.'/wp-content/plugins/rss-image-widget/phpthumb/ThumbLib.inc.php');
+				
+				    $thumb = PhpThumbFactory::create($url);  
+				    
+				    // Image width/height
+				    $thumb->resize(150, 150)->save(ABSPATH.'/wp-content/cache/'.$image);  		
+				}
+			    }		    
+			    
+			    echo '
+			             <div class="rss_image">
+				         <h5><a href="'.$item->get_permalink().'">'.$item->get_title().'</a></h5><br />
+                                         <a href="'.$item->get_permalink().'"><img src="'.get_bloginfo('wpurl').'/wp-content/cache/'.$image.'" alt="'.$item->get_title().'" /></a>
+				    </div><br />';
+			}
+			else
+			    break;
+		    }
+		    
+		    echo '</div>';
+		}
 	}
         
 	echo $after_widget; 
