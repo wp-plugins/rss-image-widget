@@ -1,7 +1,0 @@
-<div class="simplepie">
-	{IF_ERROR_BEGIN}<p class="error">{ERROR_MESSAGE}</p>{IF_ERROR_END}
-
-		{ITEM_LOOP_BEGIN}
-		    <div class="rss_image"><h5><a href="{ITEM_PERMALINK}">{ITEM_TITLE}</a></h5><br /><a href="{ITEM_PERMALINK}"><img src="/wp-content/plugins/rss-image-widget/phpthumb/phpThumb.php?src={ITEM_ENCLOSURE_LINK}&amp;w=150" alt="{ITEM_TITLE}" /></a></div><br />
-		{ITEM_LOOP_END}
-</div>
