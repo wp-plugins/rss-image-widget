@@ -75,10 +75,12 @@ class RSSImages extends WP_Widget {
 				}
 			    }		    
 			    
+			    list($width, $height, $type, $attr) = getimagesize(ABSPATH.'/wp-content/cache/'.$image);
+			    
 			    echo '
 			             <div class="rss_image">
 				         <h5><a href="'.$item->get_permalink().'">'.$item->get_title().'</a></h5><br />
-                                         <a href="'.$item->get_permalink().'"><img src="'.get_bloginfo('wpurl').'/wp-content/cache/'.$image.'" alt="'.$item->get_title().'" /></a>
+                                         <a href="'.$item->get_permalink().'"><img width="'.$width.'" height="'.$height.'" src="'.get_bloginfo('wpurl').'/wp-content/cache/'.$image.'" alt="'.$item->get_title().'" /></a>
 				    </div><br />';
 			}
 			else
