@@ -89,7 +89,9 @@ class RSSImages extends WP_Widget {
 				        mkdir($cache_path);
 					
 				    // Image width/height	
-				    $thumb->resize($instance['width'], $instance['height'])->save($cache_path.'/'.$image);  		
+				    $thumb->resize($instance['width'], $instance['height'])->save($cache_path.'/'.$image);  
+				    
+				    chmod($cache_path.'/'.$image, 0755);
 				}
 			    }		    
 			    
