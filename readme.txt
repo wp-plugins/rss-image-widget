@@ -1,20 +1,20 @@
 === RSS Image Widget ===
 Contributors: zackdesign
-http://www.zackdesign.biz/category/wp-plugins/rss-image-widget
+http://www.zackdesign.biz/wp-plugins/40
 Tags: rss, image, feed, widget, simplepie, plugin
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 1.3
+Stable tag: 1.3.1
 
 This plugin provides you with a widget to display images from a feed. It requires the SimplePie plugin to be installed.
 
 == Description ==
 
-This Widget uses PHPThumb to automatically generate good-looking thumbnails from RSS feed images inside your template. These thumbnails and the feed are cached inside `wp-content/cache` so please ensure that the directory is writable.
+This Widget uses PHPThumb to automatically generate good-looking thumbnails from RSS feed images inside your template. These thumbnails and the feed are cached inside `wp-content/cache` so please ensure that the directory is writable. If your images still don't appear check to see that they're readable inside the cache.
 
 Image Feeds will work in the plugin providing that they use enclosures. If you want you can change the template provided to suit your feed if necessary, though this should work if enclosures are used correctly.
 
-I have set the default image width in the template to be 150 pixels wide. You can change or remove this in the plugin file as you like.
+I have set the default image width in the template to be 150 pixels wide. You can change these options in the widget area.
 
 SimplePie plugin is no longer required for this plugin as it now ships with Wordpress 2.8 and above! 
 
@@ -26,10 +26,6 @@ Next version will include some extra options and possibly better HTML.
 * Much more
  
 Please be aware that I'll only be updating this if I need to. Feel free to come on board and contribute!
-
-== Upgrade Notice ==
-
-If you're upgrading and you made changes to the template I provided please note that the template is no longer in use. In that case maybe hold off upgrading if you're not confident editing the actual plugin file.
 
 == Screenshots ==
 
@@ -45,6 +41,11 @@ If you're upgrading and you made changes to the template I provided please note 
 
 
 == Changelog ==
+
+1.3.1
+
+- Intelligent garbage collection (removal of old images based on month)
+- Width/Height resizing now settable in widget
 
 1.3 
 
@@ -71,9 +72,9 @@ If you're upgrading and you made changes to the template I provided please note 
 
 == Frequently Asked Questions ==
 
-= Purple PHPThumb screen =
+= Images aren't appearing =
 
-Usually this is because you have not made PHPThumb's cache directory readable.
+Usually any problem is related to the cache, and write permissions to that cache. Check the permissions for `wp-content/cache`.
 
 = I Need HELP!!! =
 
