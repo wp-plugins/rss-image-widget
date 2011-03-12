@@ -3,8 +3,8 @@ Contributors: zackdesign
 http://www.zackdesign.biz/wp-plugins/40
 Tags: rss, image, feed, widget, simplepie, plugin
 Requires at least: 2.8
-Tested up to: 2.9.2
-Stable tag: 1.3.1
+Tested up to: 3.1
+Stable tag: 1.4
 
 This plugin provides you with a widget to display images from a feed. It requires the SimplePie plugin to be installed.
 
@@ -41,6 +41,15 @@ Please be aware that I'll only be updating this if I need to. Feel free to come 
 
 
 == Changelog ==
+
+1.4
+
+- Now comes with Shadowbox for showing images in gallery
+- Updated view of text makes layout easier for those using CSS
+- Titles moved below image by default
+- Clicking image shows the full size
+- Clicking title sends you to the website
+- Improved caching - provides an error message if there is no cache folder in admin
 
 1.3.1
 

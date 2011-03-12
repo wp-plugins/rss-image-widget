@@ -4,7 +4,7 @@ Plugin Name: RSS Images
 Plugin URI: http://www.zackdesign.biz/wp-plugins/40
 Description: RSS Image display using SimplePie
 Author: Isaac Rowntree
-Version: 1.3.1
+Version: 1.4
 Author URI: http://zackdesign.biz
 
 	Copyright (c) 2005, 2006 Isaac Rowntree (http://zackdesign.biz)
@@ -36,7 +36,7 @@ class RSSImages extends WP_Widget {
 	
 	if (!empty($instance['url']))
     	{
-                if (!class_exists('SimplePie'))
+        if (!class_exists('SimplePie'))
 		    require_once(ABSPATH.'/wp-includes/class-simplepie.php');
 		
 		$feed = new SimplePie();
@@ -58,8 +58,8 @@ class RSSImages extends WP_Widget {
 			    $url = '';
 			    
 			    if ($enclosure = $item->get_enclosure())
-	                    { 
-		                $url = $enclosure->get_link();
+	        { 
+		         $url = $enclosure->get_link();
 				
 				if (empty($instance['width']))
 	    	    	    	    $instance['width'] = 150;
@@ -67,7 +67,9 @@ class RSSImages extends WP_Widget {
 				    $instance['height'] = 150;
 				    
 				// Remove questions marks as well
-				$image = str_replace("?", '', htmlspecialchars($item->get_title()).'_'.$instance['width'].'x'.$instance['height'] .'.jpg');
+				$image = str_replace("?", '', htmlspecialchars($item->get_title()).'.jpg');
+				$image_thumb = str_replace("?", '', htmlspecialchars($item->get_title()).'_'.$instance['width'].'x'.$instance['height'] .'.jpg');
+				
 				
 				$cache_path = ABSPATH.'/wp-content/cache/rss_image_cache_'.date('n');
 				
@@ -82,23 +84,24 @@ class RSSImages extends WP_Widget {
 				{
 				    // PHPThumb caching
 				    require_once(ABSPATH.'/wp-content/plugins/rss-image-widget/phpthumb/ThumbLib.inc.php');
-				
+				    
 				    $thumb = PhpThumbFactory::create($url);  
 				    
 				    if (!file_exists($cache_path))
 				        mkdir($cache_path);
-					
+				        
+				    $thumb->save($cache_path.'/'.$image);				
 				    // Image width/height	
-				    $thumb->resize($instance['width'], $instance['height'])->save($cache_path.'/'.$image);  
+				    $thumb->resize($instance['width'], $instance['height'])->save($cache_path.'/'.$image_thumb);  
 				    
-				    chmod($cache_path.'/'.$image, 0755);
+				    chmod($cache_path.'/'.$image_thumb, 0755);
 				}
 			    }		    
 			    
 			    echo '
-			             <div class="rss_image">
-				         <h5><a href="'.$item->get_permalink().'">'.$item->get_title().'</a></h5><br />
-                                         <a href="'.$item->get_permalink().'"><img src="'.get_bloginfo('wpurl').'/wp-content/cache/rss_image_cache_'.date('n').'/'.$image.'" alt="'.$item->get_title().'" /></a>
+			      <div class="rss_image">
+            <a title="'.$item->get_title().'" class="gallery" href="'.get_bloginfo('wpurl').'/wp-content/cache/rss_image_cache_'.date('n').'/'.$image.'"><img src="'.get_bloginfo('wpurl').'/wp-content/cache/rss_image_cache_'.date('n').'/'.$image_thumb.'" alt="'.$item->get_title().'" /></a>
+            <h5><a title="'.$item->get_title().'" class="site" href="'.$item->get_permalink().'">'.$item->get_title().'</a></h5>
 				    </div><br />';
 			}
 			else
@@ -119,11 +122,11 @@ class RSSImages extends WP_Widget {
 
     /** @see WP_Widget::form */
     function form($instance) {				
-        $title = esc_attr($instance['title']);
-	$url = esc_attr($instance['url']);
-	$images = esc_attr($instance['images']);
-	$width = esc_attr($instance['width']);
-	$height = esc_attr($instance['height']);
+        if (isset($instance['title'])) : $title = esc_attr($instance['title']); else : $title = ''; endif;
+	if (isset($instance['url'])) : $url = esc_attr($instance['url']); endif;
+	if (isset($instance['images'])) : $images = esc_attr($instance['images']); endif;
+	if (isset($instance['width'])) : $width = esc_attr($instance['width']); endif;
+	if (isset($instance['height'])) : $height = esc_attr($instance['height']); endif;
 	
 	if (empty($url))
 	    $url = 'http://api.flickr.com/services/feeds/photos_public.gne?id=25087033@N04&lang=en-us&format=atom';
@@ -137,19 +140,69 @@ class RSSImages extends WP_Widget {
 	if (empty($height))
 	    $height = 150;
 	
-        ?>
-            <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></label></p>
+      ?>
+      <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></label></p>
 	    <p><label for="<?php echo $this->get_field_id('url'); ?>"><?php _e('Feed Url:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('url'); ?>" name="<?php echo $this->get_field_name('url'); ?>" type="text" value="<?php echo $url; ?>" /></label></p>
 	    <p><label for="<?php echo $this->get_field_id('images'); ?>"><?php _e('# of Images:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('images'); ?>" name="<?php echo $this->get_field_name('images'); ?>" type="text" value="<?php echo $images; ?>" /></label></p>
 	    <p><label for="<?php echo $this->get_field_id('width'); ?>"><?php _e('Max Image Width:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" type="text" value="<?php echo $width; ?>" /></label></p>
 	    <p><label for="<?php echo $this->get_field_id('height'); ?>"><?php _e('Max Image Height:'); ?> <input class="widefat" id="<?php echo $this->get_field_id('height'); ?>" name="<?php echo $this->get_field_name('height'); ?>" type="text" value="<?php echo $height; ?>" /></label></p>
-        <?php 
+      <?php 
     }
 
 } // class RSSImages
 
+if (!class_exists("RSSImagesMain"))  {
+  class RSSImagesMain {
+  
+    private $cachepath;
+    
+    function RSSImagesMain() {
+       $this->cachepath = ABSPATH.'/wp-content/cache';
+       
+       add_action('wp_enqueue_scripts', array(&$this, 'shadowBoxScript'));
+       
+    }
+    function shadowBoxScript() {
+        if (!is_admin()) {
+	  wp_enqueue_script('jquery');
+          wp_register_script('shadowbox', plugins_url('/shadowbox-3.0.3/shadowbox.js', __FILE__));            
+          wp_enqueue_script('shadowbox');
+          wp_register_style('shadowbox', plugins_url('/shadowbox-3.0.3/shadowbox.css', __FILE__));
+          wp_enqueue_style('shadowbox');
+          wp_register_script('shadowBoxInitScript', plugins_url('/js/shadowbox-init.js', __FILE__));
+          wp_enqueue_script('shadowBoxInitScript');
+        }
+    }
+         
+        
+    function checkCache() 
+    {
+      if (file_exists($this->cachepath)) 
+      {
+        add_action('widgets_init', create_function('', 'return register_widget("RSSImages");')); // register RSSImages widget
+      }
+      else
+      {
+        add_action('admin_notices', array(&$this, 'displayCacheError'));
+      }
+    }
+    
+    function displayCacheError()
+    {        
+        echo '<div class="error fade" style="background-color:red;"><p><strong>RSS Images: Error - Image cache not found, please create a cache folder under wp-content in your Wordpress folder. (e.g. <i>wp-content/cache</i>)</strong></p></div>'; 
+    }
+  }
+}
 
-add_action('widgets_init', create_function('', 'return register_widget("RSSImages");')); // register RSSImages widget
+if (class_exists('RSSImagesMain'))
+{
+  $rssImages = new RSSImagesMain();
+  $rssImages->checkCache();
+  
+  
+}
+
+
 
     function rss_image_delTree($dir) {
         $files = glob( $dir . '*', GLOB_MARK );
