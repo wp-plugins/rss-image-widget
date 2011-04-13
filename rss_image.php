@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: RSS Images
-Plugin URI: http://www.zackdesign.biz/wp-plugins/40
+Plugin URI: http://wordpress.zackdesign.biz/rss-image-widget/
 Description: RSS Image display using SimplePie
 Author: Isaac Rowntree
 Version: 1.4
