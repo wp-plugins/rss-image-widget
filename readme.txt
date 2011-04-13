@@ -1,6 +1,6 @@
 === RSS Image Widget ===
 Contributors: zackdesign
-http://www.zackdesign.biz/wp-plugins/40
+http://wordpress.zackdesign.biz/rss-image-widget/
 Tags: rss, image, feed, widget, simplepie, plugin
 Requires at least: 2.8
 Tested up to: 3.1
