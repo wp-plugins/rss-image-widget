@@ -1,10 +1,10 @@
 === RSS Image Widget ===
 Contributors: zackdesign
-http://wordpress.zackdesign.biz/rss-image-widget/
+http://wp.zackdesign.biz/rss-image-widget/
 Tags: rss, image, feed, widget, simplepie, plugin
 Requires at least: 2.8
-Tested up to: 3.1
-Stable tag: 1.4
+Tested up to: 3.3.2
+Stable tag: 1.4.1
 
 This plugin provides you with a widget to display images from a feed. It requires the SimplePie plugin to be installed.
 
@@ -41,6 +41,11 @@ Please be aware that I'll only be updating this if I need to. Feel free to come 
 
 
 == Changelog ==
+
+1.4.1
+
+- Updated the license requirements
+- Tested in 3.3.2
 
 1.4
 
