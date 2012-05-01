@@ -29,7 +29,7 @@ Please be aware that I'll only be updating this if I need to. Feel free to come 
 
 == Screenshots ==
 
-[Zack Design Plugin Showcase](http://wordpress.zackdesign.biz "Plugin Showcase")
+[Zack Design Plugin Showcase](http://wp.zackdesign.biz "Plugin Showcase")
 
 == Installation ==
 
