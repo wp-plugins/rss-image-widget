@@ -3,14 +3,14 @@ Contributors: zackdesign
 http://wp.zackdesign.biz/rss-image-widget/
 Tags: rss, image, feed, widget, simplepie, plugin
 Requires at least: 2.8
-Tested up to: 3.3.2
-Stable tag: 1.4.1
+Tested up to: 3.7
+Stable tag: 1.4.2
 
 This plugin provides you with a widget to display images from a feed. It requires the SimplePie plugin to be installed.
 
 == Description ==
 
-This Widget uses PHPThumb to automatically generate good-looking thumbnails from RSS feed images inside your template. These thumbnails and the feed are cached inside `wp-content/cache` so please ensure that the directory is writable. If your images still don't appear check to see that they're readable inside the cache.
+This Widget uses automatically downloads each image to cache it locally. These are cached inside `wp-content/cache` so please ensure that the directory is writable. If your images still don't appear check to see that they're readable inside the cache.
 
 Image Feeds will work in the plugin providing that they use enclosures. If you want you can change the template provided to suit your feed if necessary, though this should work if enclosures are used correctly.
 
@@ -41,6 +41,11 @@ Please be aware that I'll only be updating this if I need to. Feel free to come 
 
 
 == Changelog ==
+
+1.4.2
+
+- Removal of PHP Thumb to remove thumbnail generation. Figured this was unnecessary
+- Removal of garbage collection function as it was deleting stuff by accident
 
 1.4.1
 
@@ -89,6 +94,8 @@ Please be aware that I'll only be updating this if I need to. Feel free to come 
 = Images aren't appearing =
 
 Usually any problem is related to the cache, and write permissions to that cache. Check the permissions for `wp-content/cache`.
+
+The other issue could be that your feed doesn't have enclosures. If you don't know what this is please read this: http://en.wikipedia.org/wiki/RSS_enclosure
 
 = I Need HELP!!! =
 
