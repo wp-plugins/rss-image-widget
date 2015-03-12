@@ -1,35 +1,20 @@
 === RSS Image Widget ===
 Contributors: zackdesign
-http://wp.zackdesign.biz/rss-image-widget/
+http://zackdesign.biz/
 Tags: rss, image, feed, widget, simplepie, plugin
 Requires at least: 2.8
-Tested up to: 3.7
-Stable tag: 1.4.2
+Tested up to: 4.1.1
+Stable tag: 2.0.0
 
-This plugin provides you with a widget to display images from a feed. It requires the SimplePie plugin to be installed.
+This plugin provides you with a widget to display images from a feed. It requires Wordpress' SimplePie include.
 
 == Description ==
 
-This Widget uses automatically downloads each image to cache it locally. These are cached inside `wp-content/cache` so please ensure that the directory is writable. If your images still don't appear check to see that they're readable inside the cache.
+New 2.0.0 release! This should be far more stable! Please let me know via zackdesign.biz if there's anything broken in your layouts as a result of moving to Bootstrap HTML.
 
 Image Feeds will work in the plugin providing that they use enclosures. If you want you can change the template provided to suit your feed if necessary, though this should work if enclosures are used correctly.
 
-I have set the default image width in the template to be 150 pixels wide. You can change these options in the widget area.
-
-SimplePie plugin is no longer required for this plugin as it now ships with Wordpress 2.8 and above! 
-
-Next version will include some extra options and possibly better HTML.
-
-* Link to full image or enclosure URL option
-* PHPThumb reflection option (and other options)
-* Some cache options
-* Much more
- 
 Please be aware that I'll only be updating this if I need to. Feel free to come on board and contribute!
-
-== Screenshots ==
-
-[Zack Design Plugin Showcase](http://wp.zackdesign.biz "Plugin Showcase")
 
 == Installation ==
 
@@ -41,6 +26,13 @@ Please be aware that I'll only be updating this if I need to. Feel free to come 
 
 
 == Changelog ==
+
+2.0.0
+
+- Now using Lightbox provided by CDN instead of Shadowbox
+- Bootstrap-compatible classes and HTML - apologies if you were depending on the original layout
+- No more need for caching. I figured this was causing too many issues
+- SimplePie caches using the Wordpress upload directory if available
 
 1.4.2
 
@@ -93,16 +85,9 @@ Please be aware that I'll only be updating this if I need to. Feel free to come 
 
 = Images aren't appearing =
 
-Usually any problem is related to the cache, and write permissions to that cache. Check the permissions for `wp-content/cache`.
-
-The other issue could be that your feed doesn't have enclosures. If you don't know what this is please read this: http://en.wikipedia.org/wiki/RSS_enclosure
+It could be that your feed doesn't have enclosures. If you don't know what this is please read this: http://en.wikipedia.org/wiki/RSS_enclosure
 
 = I Need HELP!!! =
 
 That's what I'm here for. I do Wordpress sites for many people in a professional capacity and
 can do the same for you. Check out www.zackdesign.biz
-
-= Where do I get SimplePie? =
-
-Weren't you paying attention? Read the Description again!!!
-
