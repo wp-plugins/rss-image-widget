@@ -4,7 +4,7 @@ Plugin Name: RSS Images
 Plugin URI: http://zackdesign.biz/
 Description: RSS Image display using SimplePie
 Author: Isaac Rowntree
-Version: 2.0.0
+Version: 2.0.1
 Author URI: http://zackdesign.biz
 
 	Copyright (c) 2005, 2006 Isaac Rowntree (http://zackdesign.biz)
@@ -49,7 +49,8 @@ class RSSImages extends WP_Widget {
             $feed = new SimplePie();
             $feed->set_feed_url($instance['url']);
             // If image uploads work this will work
-            $feed->set_cache_location(wp_upload_dir()['basedir']); 
+            $directories = wp_upload_dir();
+            $feed->set_cache_location($directories['basedir']); 
             $feed->init();
             
             if ($instance['images']) {
@@ -67,7 +68,7 @@ class RSSImages extends WP_Widget {
                             $url = $enclosure->get_link();
                         } ?> 
 <div class="col-xs-12">
-    <a href="<?php echo $url; ?>" class="thumbnail gallery" data-lightbox="feed-gallery" data-title="<?php echo $item->get_title() ?>">
+    <a href="<?php echo $url; ?>" class="thumbnail gallery" data-lightbox="feed-gallery" data-title="<?php echo $item->get_title(); ?>">
         <img src="<?php echo $url; ?>" alt="<?php echo $item->get_title(); ?>">
     </a>
     <div class="caption">
