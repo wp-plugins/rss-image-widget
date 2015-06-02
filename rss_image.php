@@ -4,7 +4,7 @@ Plugin Name: RSS Images
 Plugin URI: http://zackdesign.biz/
 Description: RSS Image display using SimplePie
 Author: Isaac Rowntree
-Version: 2.0.1
+Version: 2.0.2
 Author URI: http://zackdesign.biz
 
 	Copyright (c) 2005, 2006 Isaac Rowntree (http://zackdesign.biz)

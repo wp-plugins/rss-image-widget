@@ -3,14 +3,14 @@ Contributors: zackdesign
 http://zackdesign.biz/
 Tags: rss, image, feed, widget, simplepie, plugin
 Requires at least: 2.8
-Tested up to: 4.1.1
-Stable tag: 2.0.1
+Tested up to: 4.2.2
+Stable tag: 2.0.2
 
 This plugin provides you with a widget to display images from a feed. It requires Wordpress' SimplePie include.
 
 == Description ==
 
-New 2.0.1 release! This should be far more stable! Please let me know via zackdesign.biz if there's anything broken in your layouts as a result of moving to Bootstrap HTML.
+New 2.0.2 release! This should be far more stable! Please let me know via zackdesign.biz if there's anything broken in your layouts as a result of moving to Bootstrap HTML.
 
 Image Feeds will work in the plugin providing that they use enclosures. If you want you can change the template provided to suit your feed if necessary, though this should work if enclosures are used correctly.
 
@@ -26,6 +26,10 @@ Please be aware that I'll only be updating this if I need to. Feel free to come 
 
 
 == Changelog ==
+
+2.0.2
+
+- Tested with WP 4.2.2
 
 2.0.1
 
